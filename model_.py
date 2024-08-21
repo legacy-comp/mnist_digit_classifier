@@ -1,6 +1,7 @@
 import keras
 import numpy as np
 
+
 class mnist_model:
     def __init__(self) -> None:
         self.model = keras.models.load_model('mnist.h5')
