@@ -5,6 +5,7 @@ import pygame
 
 pygame.display.init()
 pygame.font.init()
+pygame.display.set_caption("Mnist Digit Classifier")
 
 WIDTH, HEIGHT = 800, 600
 FPS = 24
