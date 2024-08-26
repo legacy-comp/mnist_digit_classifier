@@ -2,7 +2,15 @@ from elements import plot_prediction, pygame, np
 
 
 class output_wgt:
-    def __init__(self, *, origin: tuple[int, int]=(400, 0)) -> None:
+    def __init__(self, *, origin: tuple[int, int]=(400, 0), font: str=None, font_size: int=50) -> None:
+        """Helper widget used to show output based on `model.prediction`.
+
+        Parameters
+        ----------
+        origin : tuple[int, int]
+            coordinate of the top left point of the output widget (in pixels)
+        """
+
         self.origin = origin
         self.surface = pygame.surface.Surface((400, 600))
         self.label_0_pred = plot_prediction(origin=(0, 150), label='0', font_size=30)
@@ -15,10 +23,19 @@ class output_wgt:
         self.label_7_pred = plot_prediction(origin=(0, 360), label='7', font_size=30)
         self.label_8_pred = plot_prediction(origin=(0, 390), label='8', font_size=30)
         self.label_9_pred = plot_prediction(origin=(0, 420), label='9', font_size=30)
-        self.render_font = pygame.font.SysFont(None, 50)
+        self.render_font = pygame.font.SysFont(font, font_size)
         self.prediction_arr = np.zeros((10, ))
 
+
     def update_prediction(self, pred_arr: np.ndarray=np.array([np.zeros((10, ))])) -> None:
+        """Updates the prediction output based on value of `pred_arr`.
+
+        Parameters
+        ----------
+        pred_arr : np.ndarray
+            2D numpy array containing the `model.prediction` (shape: 1x10).
+        """
+
         self.label_0_pred.prediction = pred_arr[0][0]
         self.label_1_pred.prediction = pred_arr[0][1]
         self.label_2_pred.prediction = pred_arr[0][2]
@@ -30,7 +47,13 @@ class output_wgt:
         self.label_8_pred.prediction = pred_arr[0][8]
         self.label_9_pred.prediction = pred_arr[0][9]
 
+
     def update_widget(self) -> None:
+        """Updates the output_widget state.
+
+        This function is meant to be called ***every*** iteration of the program.
+        """
+
         self.surface.fill((40, 40, 40))
         text = self.render_font.render('Prediction', 1, (255, 255, 255))
         text_rect = text.get_rect()

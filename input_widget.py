@@ -4,6 +4,18 @@ from model_ import mnist_model
 
 class input_wgt:
     def __init__(self, *,origin: tuple[int, int]=(0, 0), model_obj: mnist_model, fps: int=24) -> None:
+        """Helper widget used to address user input in `main.py` file.
+
+        Parameters
+        ----------
+        origin : tuple[int, int]
+            coordinate of the top left point of the input widget (in pixels)
+        model_obj : `mnist_model()` object
+            used for passing and resetting the canvas data to the model
+        fps : int
+            the frame rate at which the widget is updating
+        """
+
         self.origin = origin
         self.canvas = canvas(origin=(20 + origin[0], 90 + origin[1]), cell_size=13, fps=fps)
         self.predict_btn = rect_button(origin=(30 - origin[0], 490 - origin[1]), width=160, height=50, label='Predict',
@@ -14,17 +26,29 @@ class input_wgt:
         self.surface = pygame.surface.Surface((400, 600))
         self.model = model_obj
 
+
     def reset(self) -> None:
+        """Clears the ***canvas*** and ***model prediction***.
+        """
+
         self.canvas.reset_canvas()
         self.model.reset()
         
 
     def pass_arr_to_model(self) -> None:
+        """Passes the content of canvas to model, which stores the corresponding result in `model.prediction`.
+        """
+
         self.canvas.canvas_dump()
         self.model.predict(np.array([self.canvas.dump]))
 
 
     def update_widget(self) -> None:
+        """Updates the input_widget state.
+
+        This function is meant to be called ***every*** iteration of the program.
+        """
+        
         self.surface.fill((40, 40, 40))
         text = self.render_font.render('Canvas', 1, (255, 255, 255))
         text_rect = text.get_rect()
