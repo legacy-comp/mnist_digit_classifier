@@ -10,32 +10,26 @@ Simple project to classify digits using model trained on MNIST dataset.
 - tensorflow=='2.16.1'
 - pygame=='2.5.2'
 
+---
+
 # How to run
 
-after cloning the repo, run the following command.
+after cloning the repo, follow the given steps:
 
-## on windows
-
-```
-python main.py
-```
-
-## on mac or linux
-
-```
-python3 main.py
-```
+1. clone this repository.
+2. install the dependencies from `requirements.txt` on your system (preferably a virtual environment).
+3. after setup is done, run the `main.py` file.
 
 ---
 
 # To change the model used
 
-1. load the model to use
-2. navigate to 'model\_.py'
-3. replace the model name in the `keras.models.load_model()` method
+1. load the model to use.
+2. navigate to `model_.py` file.
+3. replace the model name in the `keras.models.load_model()` method.
 
 ---
 
 ### _App image_
 
-<img src="https://github.com/legacy-comp/mnist_digit_classifier/blob/25001c982d52e9bf562fa82f094766522410632f/assets/sample_image.jpg" width="700">
+<img src="./assets/sample_image.jpg" width="700">
