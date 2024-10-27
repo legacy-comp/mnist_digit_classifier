@@ -14,7 +14,7 @@ Simple project to classify digits using model trained on MNIST dataset.
 
 # How to run
 
-after cloning the repo, follow the given steps:
+Follow the given steps:
 
 1. clone this repository.
 2. install the dependencies from `requirements.txt` on your system (preferably a virtual environment).
